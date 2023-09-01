@@ -1,16 +1,9 @@
 package com.example.jpamanytoonedat22c.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-
-import java.util.HashSet;
-import java.util.Set;
+import jakarta.persistence.*;
 
 @Entity
-public class Region {
+public class Kommune {
 
     @Id
     @Column(length = 4)
@@ -18,9 +11,9 @@ public class Region {
     private String navn;
     private String href;
 
-    @OneToMany(mappedBy = "region")
-    @JsonBackReference
-    private Set<Kommune> kommuneSet = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "region", referencedColumnName = "kode")
+    Region region;
 
     public String getKode() {
         return kode;
@@ -46,11 +39,11 @@ public class Region {
         this.href = href;
     }
 
-    public Set<Kommune> getKommuneSet() {
-        return kommuneSet;
+    public Region getRegion() {
+        return region;
     }
 
-    public void setKommuneSet(Set<Kommune> kommuneSet) {
-        this.kommuneSet = kommuneSet;
+    public void setRegion(Region region) {
+        this.region = region;
     }
 }
