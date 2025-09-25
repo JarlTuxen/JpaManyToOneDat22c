@@ -19,7 +19,7 @@ public class RegionRestController {
     @Autowired
     private RegionRepository regionRepository;
 
-    @GetMapping("/getRegioner")
+    @GetMapping("/getregioner")
     List<Region> getRegioner(){
 
         return apiServiceRegioner.getRegioner();
